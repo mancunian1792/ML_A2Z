@@ -5,6 +5,7 @@ setwd("/home/ubuntu/Documents/R Scripts/data/Datasets/")
 dataset <- read.csv('Part 1 - Data Preprocessing/Section 2 -------------------- Part 1 - Data Preprocessing --------------------/Data.csv')
 
 
+str(dataset)
 # Imputing the missing data.
 # if the data is missing, then fill it with the average (user defined anonymous function) 
 # which is nothing but mean function and the remove na option set to true.

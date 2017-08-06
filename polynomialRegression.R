@@ -3,6 +3,7 @@ setwd("/home/ubuntu/Documents/R Scripts/data/Datasets/")
 
 #Importing the file --CSV.
 dataset <- read.csv('Part 2 - Regression/Section 6 - Polynomial Regression/Position_Salaries.csv')
+dataset = dataset[2:3]
 # Fitting Linear Regression to the dataset
 lin_reg = lm(formula = Salary ~ .,
              data = dataset)

@@ -28,3 +28,29 @@ regressor <- lm(formula = Profit ~ ., data = training_set )
 #This provides information about how the regressor has performed and its statistical significance
 summary(regressor)
 
+#This tells us that R.D Spend is the single statistically significant predictor.Now, constructing a model to reflect that 
+regressorMulti2Single <- lm(formula = training_set$Profit ~ training_set$R.D.Spend, data = training_set)
+summary(regressorMulti2Single)
+
+y_pred <- predict(regressor, newdata = test_set)
+
+#Building optimal model using backward elimination
+opt_regressor<- lm(formula = startup_data$Profit ~ startup_data$R.D.Spend + startup_data$Administration + startup_data$Marketing.Spend +startup_data$State,
+                            data = startup_data)
+summary(opt_regressor)
+
+#Removing state --- highest p-value > SL (0.05)
+
+opt_regressor<- lm(formula = startup_data$Profit ~ startup_data$R.D.Spend + startup_data$Administration + startup_data$Marketing.Spend,
+                   data = startup_data)
+summary(opt_regressor)
+
+#Removing administration 
+opt_regressor<- lm(formula = startup_data$Profit ~ startup_data$R.D.Spend + startup_data$Marketing.Spend,
+                   data = startup_data)
+summary(opt_regressor)
+
+#Removing Marketing spend as p-value is > 0.05(0.06)
+opt_regressor<- lm(formula = startup_data$Profit ~ startup_data$R.D.Spend,
+                   data = startup_data)
+summary(opt_regressor)
